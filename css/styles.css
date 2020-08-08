@@ -1,0 +1,50 @@
+#hangman {
+    position: relative;
+    /* top: 100px;
+    left: 200px; */
+}
+
+#hangman .head,
+#hangman .torso,
+#hangman .leftArm,
+#hangman .leftLeg,
+#hangman .rightArm,
+#hangman .rightLeg {
+    position: absolute;
+}
+
+#hangman .head {
+    width: 100px;
+    top: 90px;
+    left: 330px;
+}
+
+#hangman .torso {
+    width: 25px;
+    top: 175px;
+    left: 367px;
+}
+
+#hangman .leftArm {
+    width: 90px;
+    top: 160px;
+    left: 300px;
+}
+
+#hangman .rightArm {
+    width: 90px;
+    top: 155px;
+    left: 370px;
+}
+
+#hangman .leftLeg {
+    width: 100px;
+    top: 350px;
+    left: 287px;
+}
+
+#hangman .rightLeg {
+    width: 100px;
+    top: 350px;
+    left: 373px;
+}
