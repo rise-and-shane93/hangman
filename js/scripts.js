@@ -7,28 +7,30 @@ let answer;
 let answerSplit;
 let letterBlanks = "";
 
-resetBtn.setAttribute("disabled", "true");
-
-form.onsubmit = (e) => {
+submitBtn.addEventListener("click", e => {
     e.preventDefault();
-    answer = answerInput.value;
-    answerSplit = answer.split("");
-    console.log(answer, answerSplit);
-    answerSplit.forEach(el => {
-        if (el !== " ") {
-            letterBlanks += "<div class='word-block letter'></div>";
-        } else {
-            letterBlanks += "<div class='word-block space'></div>";
-        }
-    });
-    // console.log(letterBlanks);
-    contestantInput.innerHTML = letterBlanks;
-    submitBtn.setAttribute("disabled", "true");
-    resetBtn.setAttribute("disabled", "false");
-    answerInput.value = "";
-}
+    if (answerInput.value !== "") {
+        answer = answerInput.value;
+        answerSplit = answer.split("");
+        console.log("hey", answer, answerSplit);
+        answerSplit.forEach(el => {
+            if (el !== " ") {
+                letterBlanks += "<div class='word-block letter'></div>";
+            } else {
+                letterBlanks += "<div class='word-block space'></div>";
+            }
+        });
+        contestantInput.innerHTML = letterBlanks;
+        answerInput.value = "";
+    } else {
+        alert("Please enter a word or phrase");
+    }
+});
 
-resetBtn.addEventListener("click", () => {
-    submitBtn.setAttribute("disabled", "false");
-    resetBtn.setAttribute("disabled", "true");
+resetBtn.addEventListener("click", e => {
+    e.preventDefault();
+    letterBlanks = "";
+    contestantInput.innerHTML = letterBlanks;
+    answer = undefined;
+    answerSplit = undefined;
 });
