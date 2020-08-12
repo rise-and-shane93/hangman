@@ -56,10 +56,30 @@
 #contestant-input .word-block {
     display: block;
     width: 50px;
-    height: 50px;
+    height: 40px;
     margin: 0 1rem;
 }
 
 #contestant-input .letter {
+    display: block;
+    text-align: center;
+    margin: 10px;
+    font-size: 2rem;
     border-bottom: 2px solid black;
+    color: transparent;
 }
+
+#phrase-input{
+    display: flex;
+}
+
+#used-letters {
+    border: 2px solid black;
+}
+
+/* #contestant-input .letter p {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 2rem;
+    display: none;
+} */
