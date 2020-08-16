@@ -11,6 +11,7 @@
 #hangman .rightArm,
 #hangman .rightLeg {
     position: absolute;
+    display: none;
 }
 
 #hangman .head {
@@ -75,6 +76,14 @@
 
 #used-letters {
     border: 2px solid black;
+    width: 400px;
+}
+
+#used-letters > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* #contestant-input .letter p {
