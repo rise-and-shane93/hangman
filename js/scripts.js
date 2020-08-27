@@ -10,12 +10,15 @@ const hangmanLeftArm = document.querySelector("#hangman .leftArm");
 const hangmanRightArm = document.querySelector("#hangman .rightArm");
 const hangmanLeftLeg = document.querySelector("#hangman .leftLeg");
 const hangmanRightLeg = document.querySelector("#hangman .rightLeg");
+const bodyParts = document.querySelectorAll("#hangman .body-part");
 
 let answer;
 let answerSplit;
 let letterBlanks = "";
 
 let isStudentAnswering = false;
+let totalNumLetters = 0
+let numCorrect = 0;
 let numIncorrect = 0;
 let usedLettersArr = [];
 
@@ -25,6 +28,12 @@ function resetGame() {
     answer = undefined;
     answerSplit = undefined;
     isStudentAnswering = false;
+    bodyParts.forEach(el => el.style.display = "none");
+    usedLettersDiv.innerHTML = "";
+    usedLettersArr = [];
+    totalNumLetters = 0;
+    numCorrect = 0;
+    numIncorrect = 0;
 }
 
 function renderHangman(num) {
@@ -81,10 +90,9 @@ submitBtn.addEventListener("click", e => {
         answerSplit = answer.split("");
         answerSplit.forEach(el => {
             if (el !== " ") {
-                // letterBlanks += `<div class='word-block letter'><p>${el}</p></div>`;
                 letterBlanks += `<p class='word-block letter'>${el}</p>`;
+                totalNumLetters++;
             } else {
-                // letterBlanks += "<div class='word-block space'></div>";
                 letterBlanks += "<p class='word-block space'></p>";
             }
         });
@@ -108,16 +116,29 @@ document.onkeypress = function(e) {
         if (e.keyCode >= 97 && e.keyCode <= 122) {
             let userLetter = e.key.toUpperCase();
             if (answer.indexOf(userLetter) !== -1) {
-                wordLetterBlocks.forEach((el,i) => {
-                    if(userLetter === el.textContent) {
-                        console.log("correct");
-                        el.style.color = "black";
-                    }
-                });   
+                if (usedLettersArr.indexOf(userLetter) === -1) {
+                    wordLetterBlocks.forEach((el,i) => {
+                        if(userLetter === el.textContent) {
+                            console.log("correct");
+                            el.style.color = "black";
+                            numCorrect++;
+                            console.log(numCorrect);
+                            if (numCorrect === totalNumLetters) {
+                                alert("you win!");
+                            }
+                        }
+                    });    
+                } else {
+                    console.log("you already used this letter");
+                }
             } else {
-                console.log("incorrect");
-                numIncorrect++;
-                renderHangman(numIncorrect);
+                if (usedLettersArr.indexOf(userLetter) === -1) {
+                    console.log("incorrect");
+                    numIncorrect++;
+                    renderHangman(numIncorrect);   
+                } else {
+                    console.log("you already used this letter");
+                }
             }
             usedLettersArr.push(userLetter);
             renderUsedLetters();
