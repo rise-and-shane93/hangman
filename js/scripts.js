@@ -86,7 +86,6 @@ submitBtn.addEventListener("click", e => {
     e.preventDefault();
     if (answerInput.value !== "") {
         answer = answerInput.value.toUpperCase();
-        console.log(answer);
         answerSplit = answer.split("");
         answerSplit.forEach(el => {
             if (el !== " ") {
@@ -110,7 +109,6 @@ resetBtn.addEventListener("click", e => {
 });
 
 document.onkeypress = function(e) {
-    
     if (isStudentAnswering) {
         let wordLetterBlocks = document.querySelectorAll(".word-block");
         if (e.keyCode >= 97 && e.keyCode <= 122) {
@@ -119,25 +117,22 @@ document.onkeypress = function(e) {
                 if (usedLettersArr.indexOf(userLetter) === -1) {
                     wordLetterBlocks.forEach((el,i) => {
                         if(userLetter === el.textContent) {
-                            console.log("correct");
                             el.style.color = "black";
                             numCorrect++;
-                            console.log(numCorrect);
                             if (numCorrect === totalNumLetters) {
                                 alert("you win!");
                             }
                         }
                     });    
                 } else {
-                    console.log("you already used this letter");
+                    alert("you already used this letter");
                 }
             } else {
                 if (usedLettersArr.indexOf(userLetter) === -1) {
-                    console.log("incorrect");
                     numIncorrect++;
                     renderHangman(numIncorrect);   
                 } else {
-                    console.log("you already used this letter");
+                    alert("you already used this letter");
                 }
             }
             usedLettersArr.push(userLetter);
